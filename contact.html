@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - IMI Motorsports</title>
+    <meta name="description" content="Get in touch with IMI Motorsports in Erie, Colorado. Find our contact information, hours of operation, and directions to our premier motorsports facility.">
+    <meta property="og:title" content="Contact Us - IMI Motorsports">
+    <meta property="og:description" content="Reach out to IMI Motorsports for inquiries about race tracks, go-karts, motocross, events, and more. Our team is ready to assist you!">
+    <meta property="og:image" content="images/contact-social-share.jpg">
+    <meta property="og:url" content="https://imimotorsports.com/contact.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>IMI MOTORSPORTS</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About IMI Motorsports</a></li>
+                    <li><a href="tracks.html">Our Tracks & Pricing</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="contact-btn">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero Section -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Contact <span class="highlight">Us</span></h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <span>/</span> Contact Us
+            </div>
+        </div>
+        <div class="page-header-overlay"></div>
+        <div class="page-header-bg" style="background-image: url('images/contact-hero.jpg');"></div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="contact-info">
+        <div class="container">
+            <div class="section-title">
+                <h2>How to Reach Us</h2>
+            </div>
+            <div class="info-cards">
+                <div class="info-card animate-fade-up">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>IMI Motorsports Complex<br>5074 CO-52<br>Erie, CO 80516</p>
+                    <a href="https://maps.google.com/?q=IMI+Motorsports+Complex+5074+CO-52+Erie+CO+80516" target="_blank" class="btn ghost-btn btn-icon">Get Directions <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="info-card animate-fade-up">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>For General Inquiries:<br>(303) 833-4949</p>
+                    <p>For Group Events:<br>(303) 833-4949 ext. 2</p>
+                    <a href="tel:+13038334949" class="btn ghost-btn btn-icon">Call Now <i class="fas fa-phone"></i></a>
+                </div>
+                
+                <div class="info-card animate-fade-up">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Hours of Operation</h3>
+                    <p>Monday - Friday: 10AM - Dusk<br>
+                       Saturday & Sunday: 9AM - Dusk</p>
+                    <p>Race Kart Rentals:<br>7 days a week 10AM-Dusk</p>
+                </div>
+                
+                <div class="info-card animate-fade-up">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>General Information:<br>info@imimotorsports.com</p>
+                    <p>Group Events:<br>events@imimotorsports.com</p>
+                    <a href="mailto:info@imimotorsports.com" class="btn ghost-btn btn-icon">Email Now <i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="form-content animate-fade-up">
+                <div class="section-title">
+                    <h2>Send Us a Message</h2>
+                </div>
+                <p>Have a question about our tracks, pricing, or events? Fill out the form below and one of our team members will get back to you as soon as possible.</p>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name*</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject*</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inquiry">Inquiry Type*</label>
+                        <select id="inquiry" name="inquiry" required>
+                            <option value="">Select an option</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="racing">Racing Information</option>
+                            <option value="group">Group Events</option>
+                            <option value="corporate">Corporate Events</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message*</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="updates" name="updates">
+                        <label for="updates">I would like to receive updates and promotions from IMI Motorsports.</label>
+                    </div>
+                    
+                    <button type="submit" class="btn primary-btn btn-icon">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+                
+                <div class="form-note">
+                    <p>* Required fields</p>
+                </div>
+            </div>
+            
+            <div class="map-container animate-fade-up">
+                <div class="section-title">
+                    <h2>Find Us</h2>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3062.455227483828!2d-105.04475625810467!3d40.05281009086966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c0073cad449e3%3A0x8d8492e1c072e03!2sIMI%20Motorsports%20Complex!5e0!3m2!1sen!2sus!4v1692742800000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-list animate-fade-up">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need to make a reservation?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Go-Kart racing is available on a first-come, first-served basis during regular operating hours. For weekends and holidays, we recommend arriving early as wait times can be longer.</p>
+                        <p>For all other tracks and special events, we highly recommend making a reservation to ensure track availability, especially during peak times and weekends.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I book a group or corporate event?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For group or corporate events, please call (303) 833-4949 ext. 2 or email events@imimotorsports.com. Our events team will help you customize the perfect experience for your group.</p>
+                        <p>We recommend booking at least 2-3 weeks in advance to ensure availability, especially during peak season (April-October).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What's your cancellation policy?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For individual bookings, cancellations made 48 hours or more before your scheduled time will receive a full refund. Cancellations within 48 hours may receive a credit for future use.</p>
+                        <p>For group events, our cancellation policy varies based on group size and event type. Please refer to your booking agreement or contact our events team for specific details.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you host birthday parties?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer special birthday packages for all ages. Our packages include track time, dedicated party area, and options for food and beverages.</p>
+                        <p>For more information or to book a birthday party, please call (303) 833-4949 or email events@imimotorsports.com.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="logo">
+                    <h2>IMI MOTORSPORTS</h2>
+                    <p>Colorado's Premier Motorsports Complex</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="tracks.html">Tracks & Pricing</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-middle">
+                <div class="footer-info">
+                    <div class="business-hours">
+                        <h3><i class="far fa-clock"></i> Business Hours:</h3>
+                        <p>Monday - Friday: 10AM - Dusk</p>
+                        <p>Saturday & Sunday: 9AM - Dusk</p>
+                    </div>
+                    <div class="kart-hours">
+                        <h3><i class="fas fa-flag-checkered"></i> Race Kart Rentals:</h3>
+                        <p>7 days a week 10AM-Dusk</p>
+                    </div>
+                    <div class="footer-location">
+                        <h3><i class="fas fa-map-marker-alt"></i> Find Us:</h3>
+                        <p>Erie, Colorado</p>
+                        <p><a href="https://maps.google.com" target="_blank">Get Directions</a></p>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 IMI Motorsports. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Using our main.js file for all functionality -->
+    <script src="js/main.js"></script>
+</body>
+</html>
