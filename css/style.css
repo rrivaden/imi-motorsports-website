@@ -4,12 +4,15 @@
 
 /* Base Styles & Variables */
 :root {
-    /* Color Palette */
+    /* Color Palette - Enhanced Racing Theme */
     --primary: #e81c2e;
     --primary-dark: #c01424;
+    --primary-light: #f26d7d;
     --secondary: #1d3557;
     --secondary-light: #2a4d7d;
+    --secondary-dark: #152842;
     --accent: #fdc500;
+    --accent-dark: #e0b000;
     --light: #f5f7fa;
     --dark: #1a1a1a;
     --dark-gray: #333;
@@ -179,7 +182,7 @@ img {
     color: var(--secondary);
 }
 
-/* Button Styles */
+/* Button Styles - Enhanced */
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -191,40 +194,84 @@ img {
     cursor: pointer;
     border: none;
     font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 0.5s;
+    transform: skewX(-15deg);
+    z-index: -1;
+}
+
+.btn:hover:before {
+    transform: skewX(-15deg) translateX(200%);
 }
 
 .primary-btn {
-    background-color: var(--primary);
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
     color: white;
     box-shadow: var(--shadow-sm);
+    border: none;
 }
 
 .primary-btn:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(to right, var(--primary), var(--primary-dark));
     color: white;
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
 }
 
 .secondary-btn {
-    background-color: var(--secondary);
+    background: linear-gradient(to right, var(--secondary-dark), var(--secondary));
     color: white;
+    box-shadow: var(--shadow-sm);
 }
 
 .secondary-btn:hover {
-    background-color: var(--secondary-light);
+    background: linear-gradient(to right, var(--secondary), var(--secondary-dark));
     color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
 
 .ghost-btn {
     background-color: transparent;
     color: var(--secondary);
     border: 2px solid var(--secondary);
+    position: relative;
+    z-index: 1;
+    transition: all var(--transition-normal);
+}
+
+.ghost-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary);
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform var(--transition-normal);
+    z-index: -1;
 }
 
 .ghost-btn:hover {
-    background-color: var(--secondary);
     color: white;
+}
+
+.ghost-btn:hover:before {
+    transform: scaleY(1);
 }
 
 .btn-icon {
@@ -238,10 +285,10 @@ img {
 }
 
 .btn-icon:hover i {
-    transform: translateX(4px);
+    transform: translateX(8px);
 }
 
-/* Header Styles */
+/* Header Styles - Enhanced */
 header {
     position: fixed;
     top: 0;
@@ -249,13 +296,19 @@ header {
     width: 100%;
     z-index: 100;
     padding: 1rem 0;
-    transition: background-color var(--transition-normal), padding var(--transition-normal), box-shadow var(--transition-normal);
+    transition: all var(--transition-normal);
+    background-color: transparent;
 }
 
 header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(29, 53, 87, 0.95);
     padding: 0.5rem 0;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+header.scrolled .logo h1,
+header.scrolled .main-nav a {
+    color: white;
 }
 
 .header-container {
@@ -270,7 +323,22 @@ header.scrolled {
 .logo h1 {
     font-size: 1.5rem;
     margin: 0;
-    color: var(--secondary);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    transition: all var(--transition-normal);
+    position: relative;
+    display: inline-block;
+}
+
+.logo h1:before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), transparent);
 }
 
 .main-nav ul {
@@ -279,41 +347,56 @@ header.scrolled {
 }
 
 .main-nav a {
-    color: var(--secondary);
-    padding: 0.5rem;
+    color: white;
+    padding: 0.75rem 0.5rem;
     font-weight: 600;
     position: relative;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all var(--transition-normal);
 }
 
 .main-nav a:after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 0.5rem;
+    left: 50%;
     width: 0;
     height: 2px;
     background-color: var(--primary);
-    transition: width var(--transition-fast);
+    transition: all var(--transition-fast);
+    transform: translateX(-50%);
+    opacity: 0;
 }
 
 .main-nav a:hover:after,
 .main-nav a.active:after {
-    width: 100%;
+    width: 80%;
+    opacity: 1;
 }
 
+.main-nav a:hover,
 .main-nav a.active {
     color: var(--primary);
 }
 
 .contact-btn {
-    padding: 0.5rem 1rem !important;
-    background-color: var(--primary);
+    padding: 0.5rem 1.25rem !important;
+    background: linear-gradient(to right, var(--primary), var(--primary-dark));
     color: white !important;
     border-radius: var(--radius-md);
+    box-shadow: 0 4px 10px rgba(232, 28, 46, 0.3);
+    transition: all 0.3s ease;
 }
 
 .contact-btn:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(to right, var(--primary-dark), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(232, 28, 46, 0.4);
+}
+
+.contact-btn:active {
+    transform: translateY(0);
 }
 
 .contact-btn:after {
@@ -373,7 +456,7 @@ header.scrolled {
     gap: var(--spacing-sm);
 }
 
-/* Hero Section Styles */
+/* Hero Section Styles - Enhanced */
 .hero {
     position: relative;
     height: 100vh;
@@ -395,10 +478,12 @@ header.scrolled {
     z-index: -2;
     opacity: 0;
     transition: opacity var(--transition-slow);
+    transform: scale(1.05);
 }
 
 .hero-video.loaded {
     opacity: 1;
+    animation: subtle-zoom 30s infinite alternate;
 }
 
 .hero-overlay {
@@ -407,8 +492,19 @@ header.scrolled {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(29, 53, 87, 0.7), rgba(0, 0, 0, 0.6));
+    background: linear-gradient(135deg, rgba(29, 53, 87, 0.8), rgba(0, 0, 0, 0.8));
     z-index: -1;
+}
+
+.hero-overlay:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent), var(--primary));
+    z-index: 1;
 }
 
 .hero-content {
@@ -417,11 +513,22 @@ header.scrolled {
     padding: 0 var(--spacing-sm);
     transform: translateY(20px);
     opacity: 0;
-    transition: opacity 1s ease, transform 1s ease;
+    transition: all 1s ease;
+}
+
+.hero-content.animated {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .hero-content h1 {
     margin-bottom: var(--spacing-md);
+    font-size: 4rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    animation: fadeInUp 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .hero-content h2 {
@@ -429,11 +536,16 @@ header.scrolled {
     font-weight: 600;
     letter-spacing: 3px;
     margin-bottom: var(--spacing-sm);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .award-badge {
     margin-bottom: var(--spacing-md);
     animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
 }
 
 .award-badge img {
@@ -447,6 +559,9 @@ header.scrolled {
     gap: var(--spacing-sm);
     justify-content: center;
     margin-top: var(--spacing-md);
+    animation: fadeInUp 1.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .scroll-indicator {
@@ -457,6 +572,7 @@ header.scrolled {
     text-align: center;
     cursor: pointer;
     animation: bounce 2s infinite;
+    z-index: 5;
 }
 
 .scroll-indicator p {
@@ -465,10 +581,13 @@ header.scrolled {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 10px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .scroll-arrow {
     font-size: 1.2rem;
+    color: var(--primary);
+    animation: pulse 2s infinite;
 }
 
 @keyframes bounce {
@@ -485,13 +604,45 @@ header.scrolled {
 
 @keyframes float {
     0% {
-        transform: translateY(0);
+        transform: translateY(0) rotate(0deg);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-10px) rotate(2deg);
     }
     100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes subtle-zoom {
+    0% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1.15);
     }
 }
 

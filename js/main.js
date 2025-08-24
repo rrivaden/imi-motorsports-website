@@ -3,15 +3,40 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Header scroll effect
+    // Enhanced header scroll effect with smooth transition
     const header = document.querySelector('header');
     const scrollThreshold = 100;
+    let lastScrollTop = 0;
+    let ticking = false;
     
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > scrollThreshold) {
+    function updateHeaderOnScroll(scrollPos) {
+        // Add or remove scrolled class based on scroll position
+        if (scrollPos > scrollThreshold) {
             header.classList.add('scrolled');
+            
+            // Hide header when scrolling down rapidly
+            if (scrollPos > lastScrollTop + 50 && scrollPos > 300) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
         } else {
             header.classList.remove('scrolled');
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollPos;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+        const scrollPos = window.scrollY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateHeaderOnScroll(scrollPos);
+            });
+            ticking = true;
         }
     });
     
@@ -98,18 +123,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Track item hover effect
+    // Enhanced track item hover effects
     const trackItems = document.querySelectorAll('.track-item');
     
     trackItems.forEach(item => {
+        // Add a chevron icon for better visual indication
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-chevron-right track-icon';
+        item.appendChild(icon);
+        
         item.addEventListener('mouseenter', function() {
+            // Apply enhanced hover effects
+            const image = this.querySelector('.track-image');
+            const heading = this.querySelector('h3');
+            
             this.style.transform = 'translateY(-10px)';
-            this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+            this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+            
+            if (image) {
+                image.style.transform = 'scale(1.1)';
+            }
+            
+            if (heading) {
+                heading.style.color = 'var(--primary)';
+            }
+            
+            // Animate the chevron
+            icon.style.opacity = '1';
+            icon.style.right = '15px';
         });
         
         item.addEventListener('mouseleave', function() {
+            const image = this.querySelector('.track-image');
+            const heading = this.querySelector('h3');
+            
             this.style.transform = 'translateY(0)';
             this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
+            
+            if (image) {
+                image.style.transform = 'scale(1)';
+            }
+            
+            if (heading) {
+                heading.style.color = 'white';
+            }
+            
+            // Reset the chevron
+            icon.style.opacity = '0';
+            icon.style.right = '25px';
         });
     });
     
@@ -171,18 +232,57 @@ document.addEventListener('DOMContentLoaded', function() {
     
     setActiveNavItem();
     
-    // Custom animation for primary buttons
-    const primaryButtons = document.querySelectorAll('.primary-btn');
+    // Enhanced button animations
+    const allButtons = document.querySelectorAll('.btn');
     
-    primaryButtons.forEach(button => {
+    allButtons.forEach(button => {
+        // Create shine effect element
+        const shine = document.createElement('span');
+        shine.className = 'btn-shine';
+        button.appendChild(shine);
+        
         button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px)';
+            if (this.classList.contains('primary-btn') || this.classList.contains('secondary-btn')) {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+            } else if (this.classList.contains('ghost-btn')) {
+                this.style.transform = 'translateY(-2px)';
+            }
+            
+            // Trigger the shine effect
+            shine.style.left = '150%';
+            setTimeout(() => {
+                shine.style.left = '-50%';
+            }, 300);
         });
         
         button.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
+            if (this.classList.contains('primary-btn') || this.classList.contains('secondary-btn')) {
+                this.style.boxShadow = '';
+            }
         });
     });
+    
+    // Add CSS for the shine effect
+    const style = document.createElement('style');
+    style.textContent = `
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine {
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: left 0.5s ease-out;
+        }
+    `;
+    document.head.appendChild(style);
 
     // Add CSS class to detect animation support
     if ('IntersectionObserver' in window && 
@@ -190,26 +290,88 @@ document.addEventListener('DOMContentLoaded', function() {
         'CustomEvent' in window) {
         document.documentElement.classList.add('animations-enabled');
     }
-});
-
-// Add animation to hero content on load
-window.addEventListener('load', function() {
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        setTimeout(() => {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }, 200);
+    
+    // Add intersection observer for more efficient animations
+    if ('IntersectionObserver' in window) {
+        const options = {
+            root: null, // use viewport
+            rootMargin: '0px',
+            threshold: 0.1 // trigger when at least 10% of the element is visible
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    // Once animated, no need to observe anymore
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fade-up, .animate-fade-in').forEach(element => {
+            observer.observe(element);
+        });
     }
 });
 
-// Handle video loading
+// Add animation to hero content on load with sequenced animations
+window.addEventListener('load', function() {
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        // Add the animated class to trigger CSS animations
+        heroContent.classList.add('animated');
+        
+        // Sequentially animate child elements
+        const h2 = heroContent.querySelector('h2');
+        const h1 = heroContent.querySelector('h1');
+        const buttons = heroContent.querySelector('.hero-buttons');
+        
+        if (h2) setTimeout(() => h2.classList.add('animated'), 200);
+        if (h1) setTimeout(() => h1.classList.add('animated'), 400);
+        if (buttons) setTimeout(() => buttons.classList.add('animated'), 600);
+    }
+    
+    // Add parallax effect to hero section
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            if (scrollPosition < window.innerHeight) {
+                const heroOverlay = document.querySelector('.hero-overlay');
+                if (heroOverlay) {
+                    heroOverlay.style.transform = `translateY(${scrollPosition * 0.05}px)`;
+                }
+            }
+        });
+    }
+});
+
+// Enhanced video loading with subtle effects
 document.addEventListener('DOMContentLoaded', function() {
     const heroVideo = document.querySelector('.hero-video');
     if (heroVideo) {
         heroVideo.addEventListener('loadeddata', function() {
             heroVideo.play();
-            heroVideo.classList.add('loaded');
+            
+            // Fade in video with animation
+            setTimeout(() => {
+                heroVideo.classList.add('loaded');
+                
+                // Add subtle zoom effect
+                heroVideo.style.transition = 'opacity 1s ease, transform 30s ease-out';
+                setTimeout(() => {
+                    // This will trigger a very slow zoom effect over time
+                    heroVideo.style.transform = 'scale(1.15)';
+                }, 1000);
+            }, 300);
+            
+            // Add subtle floating movement to award badge
+            const awardBadge = document.querySelector('.award-badge');
+            if (awardBadge) {
+                awardBadge.style.animation = 'float 3s ease-in-out infinite, subtleRotate 6s ease-in-out infinite';
+            }
         });
         
         // Fallback if video can't play
@@ -217,9 +379,28 @@ document.addEventListener('DOMContentLoaded', function() {
             const heroSection = document.querySelector('.hero');
             if (heroSection) {
                 heroSection.classList.add('video-fallback');
+                
+                // Add a slight parallax effect to fallback background
+                window.addEventListener('scroll', function() {
+                    const scrollPosition = window.pageYOffset;
+                    if (scrollPosition < window.innerHeight) {
+                        heroSection.style.backgroundPosition = `center ${50 + (scrollPosition * 0.05)}%`;
+                    }
+                });
             }
         });
     }
+    
+    // Add subtle rotation animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes subtleRotate {
+            0% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+            100% { transform: rotate(-1deg); }
+        }
+    `;
+    document.head.appendChild(style);
     
     // Testimonial Slider functionality
     initTestimonialSlider();
